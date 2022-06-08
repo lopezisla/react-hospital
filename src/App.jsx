@@ -4,7 +4,7 @@ import PatientList from "./components/PatientList";
 
 function App() {
   return (
-    <div className="container mx-auto mt-20">
+    <div className="container mx-auto mt-10">
       <Header />
       <Form />
       <PatientList />
