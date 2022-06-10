@@ -4,10 +4,15 @@ const PatientForm = () => {
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
   const [symptoms, setSymptoms] = useState("");
+  const [error, setError] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Enviando Formulario");
-  }
+    if ([name, email, date, symptoms].includes("")) {
+      setError(true);
+      return;
+    }
+    setError(false);
+  };
 
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-3">
@@ -19,6 +24,11 @@ const PatientForm = () => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-md py-5 px-5 mb-5"
       >
+        {error && (
+          <div className="bg-red-600 text-white text-center p-3 uppercase font-medium mb-3 rounded-md">
+            <p>Todos los campos son obligatorios</p>
+          </div>
+        )}
         <div className="mb-5">
           <label
             htmlFor="name"
