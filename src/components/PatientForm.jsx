@@ -16,8 +16,8 @@ const PatientForm = () => {
           <input
             id="name"
             type="text"
-            placeholder="Jhon Doe"
-            className="border-2 w-full p-2 mt-2 placeholder-slate-500 rounded-md"
+            placeholder="John Doe"
+            className="border-2 w-full p-2 mt-2 placeholder-slate-400 rounded-md"
           />
         </div>
         <div className="mb-5">
@@ -30,8 +30,8 @@ const PatientForm = () => {
           <input
             id="email"
             type="email"
-            placeholder="jhondoe@company.com"
-            className="border-2 w-full p-2 mt-2 placeholder-slate-500 rounded-md"
+            placeholder="johndoe@company.com"
+            className="border-2 w-full p-2 mt-2 placeholder-slate-400 rounded-md"
           />
         </div>
         <div className="mb-5">
@@ -44,7 +44,7 @@ const PatientForm = () => {
           <input
             id="date"
             type="date"
-            className="border-2 w-full p-2 mt-2 placeholder-slate-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-slate-400 rounded-md"
           />
         </div>
         <div className="mb-5">
@@ -57,7 +57,7 @@ const PatientForm = () => {
           <textarea
             id="symptoms"
             placeholder="Please describe the patient's symptoms"
-            className="border-2 w-full p-2 mt-2 placeholder-slate-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-slate-400 rounded-md"
           ></textarea>
         </div>
         <input
