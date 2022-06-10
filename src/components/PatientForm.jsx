@@ -1,11 +1,24 @@
+import { useState } from "react";
 const PatientForm = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [date, setDate] = useState("");
+  const [symptoms, setSymptoms] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Enviando Formulario");
+  }
+
   return (
-    <div className="md:w-1/2 lg:w-2/5">
+    <div className="md:w-1/2 lg:w-2/5 mx-3">
       <h2 className="font-medium text-3xl text-center">Patient Form</h2>
       <p className="font-medium text-center mt-2 mb-3 text-indigo-400">
         Here you can manage your patients
       </p>
-      <form className="bg-white shadow-md rounded-md py-5 px-5 mb-5">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded-md py-5 px-5 mb-5"
+      >
         <div className="mb-5">
           <label
             htmlFor="name"
@@ -18,6 +31,8 @@ const PatientForm = () => {
             type="text"
             placeholder="John Doe"
             className="border-2 w-full p-2 mt-2 placeholder-slate-400 rounded-md"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -32,6 +47,8 @@ const PatientForm = () => {
             type="email"
             placeholder="johndoe@company.com"
             className="border-2 w-full p-2 mt-2 placeholder-slate-400 rounded-md"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -45,6 +62,8 @@ const PatientForm = () => {
             id="date"
             type="date"
             className="border-2 w-full p-2 mt-2 placeholder-slate-400 rounded-md"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -58,13 +77,15 @@ const PatientForm = () => {
             id="symptoms"
             placeholder="Please describe the patient's symptoms"
             className="border-2 w-full p-2 mt-2 placeholder-slate-400 rounded-md"
+            value={symptoms}
+            onChange={(e) => setSymptoms(e.target.value)}
           ></textarea>
         </div>
         <input
-            type="submit"
-            className="bg-indigo-400 w-full p-2 mt-2 rounded-md text-white uppercase font-medium hover:bg-indigo-600 cursor-pointer transition-all"
-            value="Add Patient"
-          />
+          type="submit"
+          className="bg-indigo-400 w-full p-2 mt-2 rounded-md text-white uppercase font-medium hover:bg-indigo-600 cursor-pointer transition-all"
+          value="Add Patient"
+        />
       </form>
     </div>
   );
