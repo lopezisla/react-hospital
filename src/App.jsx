@@ -1,20 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import PatientForm from "./components/PatientForm";
 import PatientList from "./components/PatientList";
 
 function App() {
-
-  const [patients, setPatients] = useState([]);
+  const [patients, setPatients] = useState(JSON.parse(localStorage.getItem("patients")) ?? []);
   const [patient, setPatient] = useState({});
 
-  function deletePatient(id) {
+  // useEffect(() => {
+  //   const getLS = () => {
+  //     const patientsLS = JSON.parse(localStorage.getItem("patients")) ?? [];
+  //     setPatients(patientsLS);
+  //   };
+  //   getLS();
+  // }, []);
+
+  useEffect(() => {
+    localStorage.setItem("patients", JSON.stringify(patients));
+  }, [patients]);
+
+  const deletePatient = (id) => {
     const patientsUpdated = patients.filter(
       (patientState) => patientState.id !== id
     );
     setPatients(patientsUpdated);
-  }
-  
+  };
+
   return (
     <div className="container mx-auto mt-10">
       <Header />
