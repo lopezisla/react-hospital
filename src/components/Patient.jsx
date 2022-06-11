@@ -14,6 +14,20 @@ const Patient = ({ patient }) => {
       <p className="text-gray-700 font-medium uppercase">
         Symptoms: <span className="font-normal lowercase">{symptoms}</span>
       </p>
+      <div className="flex justify-between mt-3">
+        <button
+          type="button"
+          className="bg-indigo-400 p-2 rounded-md text-white uppercase font-medium hover:bg-indigo-600 cursor-pointer transition-all"
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          className="bg-red-400 p-2 rounded-md text-white uppercase font-medium hover:bg-red-600 cursor-pointer transition-all"
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 };
