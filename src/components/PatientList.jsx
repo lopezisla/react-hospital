@@ -8,12 +8,6 @@ const PatientList = () => {
       </p>
       <div>
         <Patient />
-        <Patient />
-        <Patient />
-        <Patient />
-        <Patient />
-        <Patient />
-        <Patient />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Error from "./Error";
 const PatientForm = ({ patients, setPatients }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -38,11 +39,7 @@ const PatientForm = ({ patients, setPatients }) => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-md py-5 px-5 mb-5"
       >
-        {error && (
-          <div className="bg-red-600 text-white text-center p-3 uppercase font-medium mb-3 rounded-md">
-            <p>Todos los campos son obligatorios</p>
-          </div>
-        )}
+        {error && <Error><p>All fields are required</p></Error>}
         <div className="mb-5">
           <label
             htmlFor="name"
