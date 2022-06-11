@@ -1,19 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Error from "./Error";
-const PatientForm = ({ patients, setPatients }) => {
+
+const PatientForm = ({ patients, setPatients, patient, setPatient }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
   const [symptoms, setSymptoms] = useState("");
   const [error, setError] = useState(false);
 
-  const idGenerator=()=>{
-    const random=Math.random().toString(36).substring(2);
-    const date=Date.now().toString(36)
-    return random + date
-  }
+  useEffect(() => {
+    if (Object.keys(patient).length > 0) {
+      setName(patient.name);
+      setEmail(patient.email);
+      setDate(patient.date);
+      setSymptoms(patient.symptoms);
+    }
+  }, [patient]);
+
+  const idGenerator = () => {
+    const random = Math.random().toString(36).substring(2);
+    const date = Date.now().toString(36);
+    return random + date;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     if ([name, email, date, symptoms].includes("")) {
       setError(true);
       return;
@@ -25,10 +37,20 @@ const PatientForm = ({ patients, setPatients }) => {
       email,
       date,
       symptoms,
-      id: idGenerator()
     };
 
-    setPatients([...patients, patientObject]);
+    if (patient.id) {
+      patientObject.id = patient.id;
+      const patientsUpdated = patients.map((patientState) =>
+        patientState.id === patient.id ? patientObject : patientState
+      );
+      setPatients(patientsUpdated);
+      setPatient({});
+    } else {
+      patientObject.id = idGenerator();
+      setPatients([...patients, patientObject]);
+    }
+
     setName("");
     setEmail("");
     setDate("");
@@ -45,7 +67,11 @@ const PatientForm = ({ patients, setPatients }) => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-md py-5 px-5 mb-5"
       >
-        {error && <Error><p>All fields are required</p></Error>}
+        {error && (
+          <Error>
+            <p>All fields are required</p>
+          </Error>
+        )}
         <div className="mb-5">
           <label
             htmlFor="name"
@@ -111,7 +137,7 @@ const PatientForm = ({ patients, setPatients }) => {
         <input
           type="submit"
           className="bg-indigo-400 w-full p-2 mt-2 rounded-md text-white uppercase font-medium hover:bg-indigo-600 cursor-pointer transition-all"
-          value="Add Patient"
+          value={patient.id ? "Edit Patient" : "Add Patient"}
         />
       </form>
     </div>
