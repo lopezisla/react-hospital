@@ -1,10 +1,11 @@
 import { useState } from "react";
-const PatientForm = () => {
+const PatientForm = ({ patients, setPatients }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
   const [symptoms, setSymptoms] = useState("");
   const [error, setError] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if ([name, email, date, symptoms].includes("")) {
@@ -12,6 +13,19 @@ const PatientForm = () => {
       return;
     }
     setError(false);
+
+    const patientObject = {
+      name,
+      email,
+      date,
+      symptoms,
+    };
+
+    setPatients([...patients, patientObject]);
+    setName("");
+    setEmail("");
+    setDate("");
+    setSymptoms("");
   };
 
   return (
