@@ -7,6 +7,11 @@ const PatientForm = ({ patients, setPatients }) => {
   const [symptoms, setSymptoms] = useState("");
   const [error, setError] = useState(false);
 
+  const idGenerator=()=>{
+    const random=Math.random().toString(36).substring(2);
+    const date=Date.now().toString(36)
+    return random + date
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     if ([name, email, date, symptoms].includes("")) {
@@ -20,6 +25,7 @@ const PatientForm = ({ patients, setPatients }) => {
       email,
       date,
       symptoms,
+      id: idGenerator()
     };
 
     setPatients([...patients, patientObject]);
@@ -31,7 +37,7 @@ const PatientForm = ({ patients, setPatients }) => {
 
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-3">
-      <h2 className="font-medium text-3xl text-center">Patient Form</h2>
+      <h2 className="font-medium text-3xl text-center">Patient form</h2>
       <p className="font-medium text-center mt-2 mb-3 text-indigo-400">
         Here you can manage your patients
       </p>

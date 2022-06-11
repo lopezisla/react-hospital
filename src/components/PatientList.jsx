@@ -1,14 +1,30 @@
 import Patient from "./Patient";
-const PatientList = () => {
+const PatientList = ({ patients }) => {
+  console.log(patients);
   return (
     <div className="md:w-1/2 lg:w-3/5 md:h-screen">
-      <h2 className="font-medium text-3xl text-center">Patient List</h2>
-      <p className="font-medium text-center mt-2 mb-3 text-indigo-400">
-        Here you can manage your patients
-      </p>
-      <div>
-        <Patient />
-      </div>
+      {patients && patients.length ? (
+        <>
+          <h2 className="font-medium text-3xl text-center">Patient List</h2>
+          <p className="font-medium text-center mt-2 mb-3 text-indigo-400">
+            Here you can see the information of your patients
+          </p>
+          <div>
+            {patients.map((patient, index) => (
+              <Patient key={patient.id} patient={patient} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <h2 className="font-medium text-3xl text-center">
+            There are no patients
+          </h2>
+          <p className="font-medium text-center mt-2 mb-3 text-indigo-400">
+            You can add patients with the form
+          </p>
+        </>
+      )}
     </div>
   );
 };
